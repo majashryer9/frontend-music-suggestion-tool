@@ -1,0 +1,24 @@
+$tablet-width: 768px;
+$desktop-width: 1024px;
+
+@mixin set-property($property, $desktop-value, $tablet-value, $mobile-value) {
+  @media (min-width: #{$desktop-width}) {
+    #{$property}: $desktop-value;
+  }
+
+  @media (min-width: #{$tablet-width}) and (max-width: #{$desktop-width - 1px}) {
+    #{$property}: $tablet-value;
+  }
+
+  @media (max-width: #{$tablet-width - 1px}) {
+    #{$property}: $mobile-value;
+  }
+}
+
+.top-container {
+  @include set-property(height, 200px, 200px, 150px);
+}
+
+.search-container {
+  @include set-property(width, 800px, 600px, 300px);
+}

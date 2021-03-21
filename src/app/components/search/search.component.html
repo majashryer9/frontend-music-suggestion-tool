@@ -1,0 +1,20 @@
+<form [formGroup]="searchForm">
+  <mat-form-field class="w-100">
+    <input
+      type="text"
+      placeholder="Search"
+      matInput
+      formControlName="searchTerm"
+      [matAutocomplete]="auto"
+    />
+    <mat-autocomplete
+      #auto="matAutocomplete"
+      [displayWith]="displayFn"
+      (optionSelected)="handleOptionSelected($event.option.value.value)"
+    >
+      <mat-option *ngFor="let result of searchResults | async" [value]="result">
+        {{ result.displayValue }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form>
